@@ -34,8 +34,8 @@ void Button_Init(uint32_t buttons) {
     }
 
     if ( buttons&BUTTON1 ) {
-        GPIOD->MODEL &= ~(_GPIO_P_MODEL_MODE0_MASK);    // Clear bits
-        GPIOD->MODEL |= GPIO_P_MODEL_MODE0_INPUT;  // Set bits
+        GPIOD->MODEL &= ~(_GPIO_P_MODEL_MODE1_MASK);    // Clear bits
+        GPIOD->MODEL |= GPIO_P_MODEL_MODE1_INPUT;  // Set bits
         inputpins |= BUTTON1;
     }
     // First read

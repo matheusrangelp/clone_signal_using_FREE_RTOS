@@ -12,7 +12,7 @@
 #endif
 
 /**
- * @brief  Buttons are on PB
+ * @brief  Buttons are on PD
  */
 ///@{
 #define BUTTON0 BIT(0)
