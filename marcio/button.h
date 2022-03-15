@@ -15,8 +15,8 @@
  * @brief  Buttons are on PB
  */
 ///@{
-#define BUTTON0 BIT(9)
-#define BUTTON1 BIT(10)
+#define BUTTON0 BIT(0)
+#define BUTTON1 BIT(1)
 ///@}
 
 void        Button_Init(uint32_t buttons);

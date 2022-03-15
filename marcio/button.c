@@ -16,7 +16,7 @@
 #include "button.h"
 
 
-static GPIO_P_TypeDef * const GPIOB = &(GPIO->P[1]);    // GPIOB
+static GPIO_P_TypeDef * const GPIOD = &(GPIO->P[3]);    // GPIOD
 
 static uint32_t lastread = 0;
 static uint32_t inputpins = 0;
@@ -28,24 +28,24 @@ void Button_Init(uint32_t buttons) {
     CMU->HFPERCLKEN0 |= CMU_HFPERCLKEN0_GPIO;           // Enable HFPERCKL for GPIO
 
     if ( buttons&BUTTON0 ) {
-        GPIOB->MODEH &= ~(_GPIO_P_MODEL_MODE1_MASK);    // Clear bits
-        GPIOB->MODEH |= GPIO_P_MODEL_MODE1_INPUT;       // Set bits
+        GPIOD->MODEL &= ~(_GPIO_P_MODEL_MODE0_MASK);    // Clear bits
+        GPIOD->MODEL |= GPIO_P_MODEL_MODE0_INPUT;       // Set bits
         inputpins |= BUTTON0;
     }
 
     if ( buttons&BUTTON1 ) {
-        GPIOB->MODEH &= ~(_GPIO_P_MODEL_MODE2_MASK);    // Clear bits
-        GPIOB->MODEH |= GPIO_P_MODEL_MODE2_INPUT;  // Set bits
+        GPIOD->MODEL &= ~(_GPIO_P_MODEL_MODE0_MASK);    // Clear bits
+        GPIOD->MODEL |= GPIO_P_MODEL_MODE0_INPUT;  // Set bits
         inputpins |= BUTTON1;
     }
     // First read
-    lastread = GPIOB->DIN;
+    lastread = GPIOD->DIN;
 
 }
 
 uint32_t Button_Read(void) {
 
-    lastread = GPIOB->DIN;
+    lastread = GPIOD->DIN;
     return lastread&inputpins;
 }
 
@@ -53,7 +53,7 @@ uint32_t Button_ReadChanges(void) {
 uint32_t newread;
 uint32_t changes;
 
-    newread = GPIOB->DIN;
+    newread = GPIOD->DIN;
     changes = newread^lastread;
     lastread = newread;
 
@@ -64,7 +64,7 @@ uint32_t Button_ReadReleased(void) {
 uint32_t newread;
 uint32_t changes;
 
-    newread = GPIOB->DIN;
+    newread = GPIOD->DIN;
     changes = newread&~lastread;
     lastread = newread;
 
@@ -75,7 +75,7 @@ uint32_t Button_ReadPressed(void) {
 uint32_t newread;
 uint32_t changes;
 
-    newread = GPIOB->DIN;
+    newread = GPIOD->DIN;
     changes = ~newread&lastread;
     lastread = newread;
 
