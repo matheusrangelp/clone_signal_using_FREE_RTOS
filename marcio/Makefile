@@ -91,7 +91,6 @@ DEBUG=y
 # Gecko_SDK DIr
 #
 GECKOSDKDIR=C:\Gecko_SDK
-
 #
 # CMSIS header files folders (ARM and manufacturer specific)
 #

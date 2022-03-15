@@ -1,9 +1,10 @@
 gcc/clock_efm32gg.o: clock_efm32gg.c em_device.h \
  C:\Gecko_SDK/platform/Device/SiliconLabs/EFM32GG/Include/efm32gg990f1024.h \
  C:\Gecko_SDK/platform/CMSIS/Include/core_cm3.h \
- C:\Gecko_SDK/platform/CMSIS/Include/core_cmInstr.h \
+ C:\Gecko_SDK/platform/CMSIS/Include/cmsis_version.h \
+ C:\Gecko_SDK/platform/CMSIS/Include/cmsis_compiler.h \
  C:\Gecko_SDK/platform/CMSIS/Include/cmsis_gcc.h \
- C:\Gecko_SDK/platform/CMSIS/Include/core_cmFunc.h \
+ C:\Gecko_SDK/platform/CMSIS/Include/mpu_armv7.h \
  C:\Gecko_SDK/platform/Device/SiliconLabs/EFM32GG/Include/system_efm32gg.h \
  C:\Gecko_SDK/platform/Device/SiliconLabs/EFM32GG/Include/efm32gg_dma_ch.h \
  C:\Gecko_SDK/platform/Device/SiliconLabs/EFM32GG/Include/efm32gg_dma.h \
@@ -56,9 +57,10 @@ gcc/clock_efm32gg.o: clock_efm32gg.c em_device.h \
 em_device.h:
 C:\Gecko_SDK/platform/Device/SiliconLabs/EFM32GG/Include/efm32gg990f1024.h:
 C:\Gecko_SDK/platform/CMSIS/Include/core_cm3.h:
-C:\Gecko_SDK/platform/CMSIS/Include/core_cmInstr.h:
+C:\Gecko_SDK/platform/CMSIS/Include/cmsis_version.h:
+C:\Gecko_SDK/platform/CMSIS/Include/cmsis_compiler.h:
 C:\Gecko_SDK/platform/CMSIS/Include/cmsis_gcc.h:
-C:\Gecko_SDK/platform/CMSIS/Include/core_cmFunc.h:
+C:\Gecko_SDK/platform/CMSIS/Include/mpu_armv7.h:
 C:\Gecko_SDK/platform/Device/SiliconLabs/EFM32GG/Include/system_efm32gg.h:
 C:\Gecko_SDK/platform/Device/SiliconLabs/EFM32GG/Include/efm32gg_dma_ch.h:
 C:\Gecko_SDK/platform/Device/SiliconLabs/EFM32GG/Include/efm32gg_dma.h:
