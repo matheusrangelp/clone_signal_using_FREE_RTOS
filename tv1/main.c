@@ -35,7 +35,7 @@
  ***************************************************************************/
 
 /// Blinking state (ative|inactive)
-bool transmissao = false;
+bool transmissao = true;
 bool recepcao = false;
 bool iniciou = false;
 
@@ -62,26 +62,27 @@ uint32_t semiperiod1    = 1000;        // 1.5 sec
  *
  */
 
+#define N_samples 9
 int cont = 0;
-int dados[20010]={0};
-
+// // int dados[80]={1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+int dados[10]={1, 0, 1, 0, 1, 0, 1, 0, 1, 0};
 void Task_BlinkLED2(void *pvParameters){
-const portTickType xFrequency = 1;
+const portTickType xFrequency = 3;
 portTickType xLastWakeTime=xTaskGetTickCount();
 
     while(1) {
         if( transmissao == true ) {
-           
+           TRANSMISSOR_Toggle(TRANSMISSOR); 
             //TRANSMISSOR_On(TRANSMISSOR);
-            if(dados[cont] == 0)    TRANSMISSOR_Off(TRANSMISSOR);
-            else    TRANSMISSOR_On(TRANSMISSOR);
-            cont++;
-            if(cont == 20000){
-                LED_Write(LED1|LED2,0);
-                TRANSMISSOR_Off(TRANSMISSOR);
-                transmissao = false;
-                cont = 0;
-            }
+            // if(dados[cont] == 0)    TRANSMISSOR_Off(TRANSMISSOR);
+            // else    TRANSMISSOR_On(TRANSMISSOR);
+            // cont++;
+            // if(cont == N_samples){
+            //     LED_Write(LED1|LED2,0);
+            //     TRANSMISSOR_Off(TRANSMISSOR);
+            //     //transmissao = false;
+            //     cont = 0;
+            // }
 
         } else if(recepcao == true) {
             
@@ -89,7 +90,7 @@ portTickType xLastWakeTime=xTaskGetTickCount();
                 if((Receptor_Read()&RECEPTOR) == 0) dados[cont] = 1;
                 else    dados[cont] = 0;
                 cont++;
-                if(cont == 20000){
+                if(cont == N_samples){
                     recepcao = false;
                     iniciou = false;
                     cont = 0;
@@ -175,9 +176,9 @@ BaseType_t rc;
     if( rc != pdPASS )
        STOP();
 
-    rc = xTaskCreate(Task_Button,"Button", 1000,0,1,0);
-    if( rc != pdPASS )
-        STOP();
+    // rc = xTaskCreate(Task_Button,"Button", 1000,0,1,0);
+    // if( rc != pdPASS )
+    //     STOP();
 
     vTaskStartScheduler();
 
